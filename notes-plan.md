@@ -33,7 +33,19 @@ Cf [Installation](http://www.sysdig.org/install/)
 
 Cf [Bonne série d'exemples de commandes](http://www.sysdig.org/wiki/sysdig-examples/) et [Sysdig CLI examples](https://ma.ttias.be/sysdig-cli-examples/)
 
+
+Dans les trucs à montrer :
+
+ * On voit *des choses* qui *défilent* en live
+ * On peut les filtrer
+ * On a des chisels pour agréger ou autres
+ * On peut enregistrer ce qu'il se passe vers des fichiers, puis analyser ce qui a été enregistré, en off-line
+
+
 # Et avec des containers ?
+
+
+Depuis le système *physique*, on peut analyser ce qu'il se passe dans les containers.
 
 
 
@@ -43,7 +55,14 @@ Cf [Bonne série d'exemples de commandes](http://www.sysdig.org/wiki/sysdig-exam
 
 # Aller plus loin ?
 
+Ca se scripte ; en Lua notamment, cf [Chisels User Guide](http://www.sysdig.org/wiki/chisels-user-guide/)
 
 
 
 # Conclusion, notes finales, questions
+
+C'est cool \o/
+
+Un seul outil et plus 36 outils différents avec des interfaces et options différentes.
+
+Analyse *on-line* ou *off-line*. Fouillage en profondeur.
