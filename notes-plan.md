@@ -29,6 +29,20 @@ Cf [http://www.sysdig.org/wiki/sysdig-overview/](http://www.sysdig.org/wiki/sysd
 
 Cf [Installation](http://www.sysdig.org/install/)
 
+Sous Debian :
+
+```bash
+curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | sudo apt-key add -
+sudo curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
+sudo apt-get update
+
+sudo apt-get install -y linux-headers-$(uname -r)
+sudo apt-get install -y sysdig
+```
+
+Attention : lancer la commande `sysdig` sans aucun paramètre pour contrôler un peu ce qu'elle va faire, c'est s'exposer à **beaucoup** de lignes qui vont défiler dans la console !
+
+
 ## Exemples simples, puis cool !
 
 Cf [Bonne série d'exemples de commandes](http://www.sysdig.org/wiki/sysdig-examples/) et [Sysdig CLI examples](https://ma.ttias.be/sysdig-cli-examples/)
@@ -44,8 +58,7 @@ Dans les trucs à montrer :
 
 # Et avec des containers ?
 
-
-Depuis le système *physique*, on peut analyser ce qu'il se passe dans les containers.
+Depuis le système *physique*, on peut analyser ce qu'il se passe dans les containers : juste *ça marche* ;-)
 
 
 
