@@ -171,6 +171,52 @@
                         <h1>sysdig</h1>
                     </section>
 
+                    <section>
+                        <h2>Quid ?</h2>
+                        ul>li*5
+                        <aside class="notes">
+                            ul>li*3
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Installation</h2>
+                        <p><a href="http://www.sysdig.org/install/">sysdig.org/install</a></p>
+                        <ul>
+                            <li>Paquets pour RHEL, CentOS, Debian, Ubuntu, ...</li>
+                            <li>Script d'installation automatisé</li>
+                            <li>Instructions pour installation <em>manuelle</em></li>
+                        </ul>
+                        <aside class="notes">
+                            ul>li*3
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Installation (debian)</h2>
+                        <pre><code data-trim>
+curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | sudo apt-key add -
+sudo curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
+sudo apt-get update
+
+sudo apt-get install -y linux-headers-$(uname -r)
+sudo apt-get install -y sysdig
+                        </code></pre>
+                        <aside class="notes">
+                            ul>li*3
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Windows ? Mac ?</h2>
+                        <p>
+                            Limité à la lecture de trace générées sous Linux.
+                        </p>
+                        <aside class="notes">
+                            ul>li*3
+                        </aside>
+                    </section>
+
 
                     <!-- sysdig -->
                 </section>
