@@ -13,4 +13,9 @@ Quelques articles à lire / fouiller
  * [An OpenStack Crime Story solved by tcpdump, sysdig, and iostat – Episode 2](https://blog.codecentric.de/en/2014/09/openstack-crime-story-solved-tcpdump-sysdig-iostat-episode-2/)
  * [Sysdig CLI examples](https://ma.ttias.be/sysdig-cli-examples/)
 
+Et encore :
+
+ * A propos de `lsof`, `ps` et comment sysdig fait mieux : [Sysdig for ps, lsof, netstat + time travel](https://sysdig.com/ps-lsof-netstat-time-travel/)
+ * [Sysdig + Logs: Advanced Log Analysis Made Easy](https://sysdig.com/sysdig-plus-logs/)
+
 **TODO** sortir quelques vidéos qui aient l'air intéressantes

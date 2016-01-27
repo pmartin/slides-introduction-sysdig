@@ -23,13 +23,15 @@ Bon, ça permet d'obtenir **plein** d'informations, mais il faut utiliser 36 out
 
 ## C'est quoi sysdig ?
 
+Cf [http://www.sysdig.org/wiki/sysdig-overview/](http://www.sysdig.org/wiki/sysdig-overview/)
 
 ## Installation
 
+Cf [Installation](http://www.sysdig.org/install/)
 
 ## Exemples simples, puis cool !
 
-
+Cf [Bonne série d'exemples de commandes](http://www.sysdig.org/wiki/sysdig-examples/) et [Sysdig CLI examples](https://ma.ttias.be/sysdig-cli-examples/)
 
 # Et avec des containers ?
 
