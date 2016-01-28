@@ -42,6 +42,32 @@ sudo apt-get install -y sysdig
 
 Attention : lancer la commande `sysdig` sans aucun paramètre pour contrôler un peu ce qu'elle va faire, c'est s'exposer à **beaucoup** de lignes qui vont défiler dans la console !
 
+Note : pour pas mal de trucs, il faut lancer `sysdig` en root : ça va chercher des informations bien bas-niveau, pas forcément accessibles à n'importe qui ;-)
+
+
+## Et avec des containers ?
+
+Depuis le système *physique*, on peut analyser ce qu'il se passe dans les containers : juste *ça marche* ;-)
+
+Il faut, occasionnellement, utiliser l'option `-pc` pour avoir de la visibilité à l'intérieur des containers.
+
+
+## Analyse en live / replay
+
+Par défaut, sortie directement sur la console. Mais on peut également enregistrer les traces vers un fichier, pour ensuite les analyser.
+
+Enregistrer vers un fichier :
+
+```bash
+sysdig -w mon-fichier.scap
+```
+
+Analyser ce qui est dans le fichier :
+
+```bash
+sysdig -r mon-fichier.scap
+```
+
 
 ## Exemples simples, puis cool !
 
@@ -58,28 +84,81 @@ Dans les trucs à montrer :
 
 ### Les filtres
 
+Observer *tout* ce qu'il se passe, c'est **très** verbeux et clairement pas une bonne idée ^^
 
+=> On peut filtrer \o/
+
+Par exemple, pour avoir toutes les informations liées à un (ou plusieurs) processus nommé(s) `php` :
 
 ```bash
-
+sysdig proc.name=php
 ```
 
-
+On peut lancer un serveur PHP en CLI une fois cette commande en cours :
 
 ```bash
-
+cd examples
+php -S localhost:8001
 ```
 
+=> Si on fait des requêtes sur `http://localhost:8001/` ou sur `http://localhost:8001/phpinfo.php`, on voit tout ce que fait le processus \o/
 
+On peut combiner des filtres, bien sûr, pour ne conserver que ce qui nous intéresse :
 
 ```bash
+sysdig -r mon-fichier.scap "proc.name=php and evt.type=open and fd.name contains php and not fd.directory contains /usr/"
+```
 
+On peut voir tous les répertoires parcourus par l'utilisateur `root` :
+
+```bash
+sysdig "evt.type=chdir and user.name=root"
+```
+
+Voir passer toutes les ouvertures de fichiers au fur et à mesure qu'elles arrivent, en choisissant les informations affichées gràce à `-p` :
+
+```bash
+sysdig -p "%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name" evt.type=open
+```
+
+Même chose, en limitant à une portion du chemin :
+
+```bash
+sysdig -pc -p "%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name" "evt.type=open and fd.name contains /var/cache/"
 ```
 
 Lister toutes les connexions réseau entrantes, qui sont servies par un processus autre que `nginx` :
 
 ```bash
  sysdig -p"%proc.name %fd.name" "evt.type=accept and proc.name!=nginx"
+```
+
+Format de sortie par défaut :
+
+```
+By default, sysdig prints the information for each captured event on a single
+ line with the following format:
+
+ %evt.num %evt.outputtime %evt.cpu %proc.name (%thread.tid) %evt.dir %evt.type %evt.info
+
+where:
+ evt.num is the incremental event number
+ evt.time is the event timestamp
+ evt.cpu is the CPU number where the event was captured
+ proc.name is the name of the process that generated the event
+ thread.tid id the TID that generated the event, which corresponds to the
+   PID for single thread processes
+ evt.dir is the event direction, > for enter events and < for exit events
+ evt.type is the name of the event, e.g. 'open' or 'read'
+ evt.info is the list of event arguments.
+```
+
+Et quand on a `-pc` :
+
+```
+Using -pc or -pcontainer, the default format will be changed to a container-friendly one:
+
+%evt.num %evt.outputtime %evt.cpu %container.name (%container.id) %proc.name (%thread.tid:%thread.vtid) %evt.dir %evt.type %evt.info
 ```
 
 
@@ -141,7 +220,6 @@ sysdig -c topprocs_net
 
 
 
-
 ### Chisels + Filtres
 
 Bien sûr, les chisels peuvent être combinés avec des filtres, pour affiner ce sur quoi les chisels sont appliqués !
@@ -167,14 +245,28 @@ sysdig -pc -c topfiles_bytes container.name=tea-ecommerce
 ```
 
 
-# Et avec des containers ?
 
-Depuis le système *physique*, on peut analyser ce qu'il se passe dans les containers : juste *ça marche* ;-)
+```bash
+
+```
+
+
+
+```bash
+
+```
+
+
+
+```bash
+
+```
 
 
 
 # csysdig
 
+Interface *graphique* qui permet de visualiser ce qu'il se passe en live -- pensez à un `htop` boosté de folie ^^
 
 
 Lister tous les processus (y compris ceux dans des containers) :
