@@ -40,16 +40,39 @@ sudo apt-get install -y linux-headers-$(uname -r)
 sudo apt-get install -y sysdig
 ```
 
+
+## Premiers pas
+
 Attention : lancer la commande `sysdig` sans aucun paramètre pour contrôler un peu ce qu'elle va faire, c'est s'exposer à **beaucoup** de lignes qui vont défiler dans la console !
+
+Mais on peut limiter à quelques événements, pour voir à quoi ça ressemble :
+
+```bash
+sysdig -n 100
+```
 
 Note : pour pas mal de trucs, il faut lancer `sysdig` en root : ça va chercher des informations bien bas-niveau, pas forcément accessibles à n'importe qui ;-)
 
 
-## Et avec des containers ?
+Format de sortie par défaut :
 
-Depuis le système *physique*, on peut analyser ce qu'il se passe dans les containers : juste *ça marche* ;-)
+```
+By default, sysdig prints the information for each captured event on a single
+ line with the following format:
 
-Il faut, occasionnellement, utiliser l'option `-pc` pour avoir de la visibilité à l'intérieur des containers.
+ %evt.num %evt.outputtime %evt.cpu %proc.name (%thread.tid) %evt.dir %evt.type %evt.info
+
+where:
+ evt.num is the incremental event number
+ evt.time is the event timestamp
+ evt.cpu is the CPU number where the event was captured
+ proc.name is the name of the process that generated the event
+ thread.tid id the TID that generated the event, which corresponds to the
+   PID for single thread processes
+ evt.dir is the event direction, > for enter events and < for exit events
+ evt.type is the name of the event, e.g. 'open' or 'read'
+ evt.info is the list of event arguments.
+```
 
 
 ## Analyse en live / replay
@@ -66,6 +89,23 @@ Analyser ce qui est dans le fichier :
 
 ```bash
 sysdig -r mon-fichier.scap
+```
+
+On peut spécifier une taille max par fichier, faire du rotate de fichiers, compresser les fichiers, ...
+
+
+## Et avec des containers ?
+
+Depuis le système *physique*, on peut analyser ce qu'il se passe dans les containers : juste *ça marche* ;-)
+
+Il faut, occasionnellement, utiliser l'option `-pc` pour avoir de la visibilité à l'intérieur des containers.
+
+Et quand on a `-pc`, sortie par défaut :
+
+```
+Using -pc or -pcontainer, the default format will be changed to a container-friendly one:
+
+%evt.num %evt.outputtime %evt.cpu %container.name (%container.id) %proc.name (%thread.tid:%thread.vtid) %evt.dir %evt.type %evt.info
 ```
 
 
@@ -109,6 +149,13 @@ On peut combiner des filtres, bien sûr, pour ne conserver que ce qui nous inté
 sysdig -r mon-fichier.scap "proc.name=php and evt.type=open and fd.name contains php and not fd.directory contains /usr/"
 ```
 
+Pour ce qui est de combiner des filtres et de filtres un peu avancés :
+
+ * Opérateurs : =, !=, <, <=, >, >=, contains
+ * Combinaison : or, and, not
+ * On peut utiliser des parenthèses
+
+
 On peut voir tous les répertoires parcourus par l'utilisateur `root` :
 
 ```bash
@@ -133,50 +180,28 @@ Lister toutes les connexions réseau entrantes, qui sont servies par un processu
  sysdig -p"%proc.name %fd.name" "evt.type=accept and proc.name!=nginx"
 ```
 
-Format de sortie par défaut :
+Ou pour voir toutes les requêtes SQL de sélection jouées depuis des process PHP :
 
-```
-By default, sysdig prints the information for each captured event on a single
- line with the following format:
-
- %evt.num %evt.outputtime %evt.cpu %proc.name (%thread.tid) %evt.dir %evt.type %evt.info
-
-where:
- evt.num is the incremental event number
- evt.time is the event timestamp
- evt.cpu is the CPU number where the event was captured
- proc.name is the name of the process that generated the event
- thread.tid id the TID that generated the event, which corresponds to the
-   PID for single thread processes
- evt.dir is the event direction, > for enter events and < for exit events
- evt.type is the name of the event, e.g. 'open' or 'read'
- evt.info is the list of event arguments.
+```bash
+sysdig "proc.name contains php-fpm and evt.buffer contains SELECT"
 ```
 
-Et quand on a `-pc` :
+Pour obtenir la liste des filtres existant :
 
+```bash
+sysdig -l
 ```
-Using -pc or -pcontainer, the default format will be changed to a container-friendly one:
 
-%evt.num %evt.outputtime %evt.cpu %container.name (%container.id) %proc.name (%thread.tid:%thread.vtid) %evt.dir %evt.type %evt.info
+Et pour obtenir la liste des types d'événements existant (`>` indique un événement *entrant* et `<` un événement *sortant*) :
+
+```bash
+sysdig -L
 ```
 
 
 ### Les chisels
 
 Scripts qui analysent le flux d'événements pour réaliser des actions *utiles*.
-
-Liste des chisels disponibles :
-
-```bash
-sysdig -cl
-```
-
-Plus d'informations sur un chisel
-
-```bash
-sysdig -i NOM_DU_CHISEL
-```
 
 Exécuter un chisel :
 
@@ -218,36 +243,63 @@ Je parlais plus haut de `nethogs` pour voir les process qui consomment du résea
 sysdig -c topprocs_net
 ```
 
+Liste des chisels disponibles :
+
+```bash
+sysdig -cl
+```
+
+Plus d'informations sur un chisel
+
+```bash
+sysdig -i NOM_DU_CHISEL
+```
 
 
 ### Chisels + Filtres
 
 Bien sûr, les chisels peuvent être combinés avec des filtres, pour affiner ce sur quoi les chisels sont appliqués !
 
-Par exemple, pour visionner les fichiers qui font le plus gros volume d'I/O, en se limitant à un répertoire donné :
+Lister les fichiers qui représentent les plus d'I/O, uniquement pour le container `tea-ecommerce` :
 
 ```bash
-# TODO n'a pas l'air de marcher
-sysdig -pc -c topfiles_bytes "fd.name contains /www/var/cache/"
+sysdig -pc -c topfiles_bytes "container.name=tea-ecommerce"
+```
+
+Ou, pour visionner les fichiers qui font le plus gros volume d'I/O, en se limitant à un répertoire donné :
+
+```bash
+sysdig -pc -c topfiles_bytes "container.name=tea-ecommerce and fd.directory contains cache"
 ```
 
 Ou pour les fichiers accédés uniquement par le processus php-fpm :
 
 ```bash
-# TODO n'a pas l'air de marcher
-sysdig -pc -c topfiles_bytes "proc.name=php-fpm"
+sysdig -pc -c topfiles_bytes "proc.name contains php-fpm"
 ```
 
-Lister les fichiers qui représentent les plus d'I/O, uniquement pour le container `tea-ecommerce` :
+Pour afficher une sorte de spectrogramme des fichiers accédés :
 
 ```bash
-sysdig -pc -c topfiles_bytes container.name=tea-ecommerce
+sysdig -c spectrogram "fd.type=file and container.name=tea-ecommerce"
 ```
 
-
+Suivre les logs de plusieurs containers (surtout si on n'a rien fait pour les mettre *où il faut*), c'est un peu compliqué ? Bah non ;-)
 
 ```bash
+sysdig -pc -cspy_logs
+```
 
+Bien sûr, ça se filtre :
+
+```bash
+sysdig -pc -cspy_logs "fd.name contains access.log or container.name=tea-db"
+```
+
+Et il y a plein de choses qu'on peut faire ; genre visionner les requêtes solr sur notre index ecommerce :
+
+```bash
+sysdig -pc -cspy_logs "evt.args contains IndexEcommerce_fr and evt.args contains path=/select"
 ```
 
 
@@ -268,6 +320,8 @@ sysdig -pc -c topfiles_bytes container.name=tea-ecommerce
 
 Interface *graphique* qui permet de visualiser ce qu'il se passe en live -- pensez à un `htop` boosté de folie ^^
 
+On peut réutiliser l'option `-r` pour analyser un fichier de trace existant, également ;-)
+
 
 Lister tous les processus (y compris ceux dans des containers) :
 
@@ -287,28 +341,24 @@ Lister tous les containers qui tournent en local, avec les ressources qu'ils con
 csysdig -vcontainers
 ```
 
+Lister tous les processus qui tournent dans des containers :
 
+```bash
+csysdig -pc "container.name!=host"
+```
 
+On peut aussi analyser une requêtes sur notre serveur web PHP de test :
+
+```bash
+csysdig -pc "proc.name=php"
+```
+
+=> C'est l'occasion de faire F5 et F6 pour la sortie, digger ce qu'il se passe, ...
 
 
 ```bash
 
 ```
-
-
-
-```bash
-
-```
-
-
-
-```bash
-
-```
-
-
-
 
 
 
