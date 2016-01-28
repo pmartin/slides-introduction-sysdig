@@ -180,6 +180,12 @@ Lister toutes les connexions réseau entrantes, qui sont servies par un processu
  sysdig -p"%proc.name %fd.name" "evt.type=accept and proc.name!=nginx"
 ```
 
+Et si on veut tous les fichiers auxquels nginx essaye d'accéder ; mais échoue (genre, les fichiers en 404 sur nos sites) :
+
+```bash
+sysdig "proc.name=nginx and evt.type=open and evt.failed=true"
+```
+
 Ou pour voir toutes les requêtes SQL de sélection jouées depuis des process PHP :
 
 ```bash
