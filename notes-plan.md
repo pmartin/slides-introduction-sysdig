@@ -14,8 +14,29 @@ Nombreux outils pour répondre, en partie, à cette question (descriptions fort 
  * [`lsof`](https://en.wikipedia.org/wiki/Lsof) : liste les fichiers ouverts et les processus qui y accèdent -> vu que plein de choses sous UNIX sont représentées par des fichiers, c'est déjà fort pratique ;-)
  * [`netstat`](https://en.wikipedia.org/wiki/Netstat) : infos à propos du réseau (connexions ouvertes, tables de routage, ...)
  * `strace` : liste les appels systèmes effectués par un processus, au fur et à mesure de son exécution
+ * `nmap` : pour lister les ports sur lesquels quelque chose écoute -> doit pouvoir être remplacé par une sonde sysdig ?
+ * `iostat`
+ * `vmstat`
 
 Bon, ça permet d'obtenir **plein** d'informations, mais il faut utiliser 36 outils différents, qui ont tous des options différentes... Pas très marrant et pas évident !
+
+
+Exemples :
+
+```bash
+ps -Alf
+top
+htop
+nethogs wlan0
+tcmdump
+lsof /home/pmartin/projects/ecommerce
+
+netstat
+netstat --route
+netstat --statistics
+
+strace php -S localhost:8001
+```
 
 
 # sysdig
