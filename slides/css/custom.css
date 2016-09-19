@@ -5,7 +5,7 @@
     font-family: "SourceCodePro";
     font-style: normal;
     font-weight: normal;
-    src: url("../lib/font/SourceCodePro/SourceCodePro-Regular.ttf") format("truetype"), 
+    src: url("../lib/font/SourceCodePro/SourceCodePro-Regular.ttf") format("truetype"),
         url("../lib/font/SourceCodePro/SourceCodePro-Bold.ttf") format("truetype")
     ;
 }
@@ -169,33 +169,16 @@
     white-space: nowrap;
 }
 
-
-/*
-.section-histoire-php {
-    border-left: 5px dotted blue;
+.reveal blockquote {
+    border: none;
+    box-shadow: none;
+    font-size: 150%;
 }
 
-.section-php7 {
-
+.reveal blockquote::before {
+    content: "«\00A0";
 }
 
-.section-php7-part1 {
-    border-left: 5px dotted red;
+.reveal blockquote::after {
+    content: "\00A0»";
 }
-
-.section-php7-part2 {
-    border-left: 5px dotted red;
-}
-
-.section-php7-migration {
-    border-left: 5px dotted pink;
-}
-
-.section-process-evol {
-    border-left: 5px dotted green;
-}
-
-.section-conclusion {
-    border-left: 5px dotted purple;
-}
-*/
