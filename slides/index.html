@@ -491,6 +491,11 @@ sysdig -i NOM_DU_CHISEL
 						<pre><code data-trim>
 sysdig -pc -c topfiles_bytes
 						</code></pre>
+                        <pre><code data-trim>
+sysdig -pc -c topfiles_bytes \
+    "container.name=tea-ecommerce \
+    and fd.directory contains cache"
+						</code></pre>
 						<aside class="notes">
 							ul>li*3
 						</aside>
@@ -500,6 +505,22 @@ sysdig -pc -c topfiles_bytes
                         <p>Accès fichiers lents (&gt;3sec)</p>
 	                    <pre><code data-trim>
 sysdig -pc -c fileslower 3
+	                    </code></pre>
+	                    <aside class="notes">
+	                        ul>li*3
+	                    </aside>
+	                </section>
+
+                    <section>
+                        <p>Suivre des logs</p>
+	                    <pre><code data-trim>
+sysdig -pc -cspy_logs \
+    "fd.name contains access.log \
+    or container.name=tea-db"
+	                    </code></pre><pre><code data-trim>
+sysdig -pc -cspy_logs \
+    "evt.args contains IndexEcommerce_fr \
+    and evt.args contains path=/select"
 	                    </code></pre>
 	                    <aside class="notes">
 	                        ul>li*3
