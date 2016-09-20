@@ -154,6 +154,11 @@
     text-shadow: 0px 0px 8px black;
 }
 
+.reveal .inverted code {
+    color: black;
+    text-shadow: none;
+}
+
 
 .reveal .slide-number {
     font-size: 25px;

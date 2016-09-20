@@ -336,16 +336,78 @@ php -S localhost:8001
 	                    </aside>
 	                </section>
 
-					<section class="" data-background="./images/sysdig-04-follow-root.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-04-follow-root.png" data-background-size="">
+						<p>Espionner <code>root</code></p>
 						<pre><code data-trim>
 sysdig "evt.type=chdir \
-	and user.name=root \
-	and proc.name!=acpi"
+    and user.name=root \
+    and proc.name!=acpi"
 	                    </code></pre>
 						<aside class="notes">
 							ul>li*3
 						</aside>
 					</section>
+
+					<section class="inverted" data-background="./images/sysdig-05-option-p.png" data-background-size="">
+						<p>Choisir les informations affichées : <code>-p</code></p>
+						<pre><code data-trim>
+sysdig
+    -p "%12user.name %6proc.pid %12proc.name \
+        %3fd.num %fd.typechar %fd.name" \
+    "evt.type=open and fd.name contains .xml"
+	                    </code></pre>
+						<aside class="notes">
+							ul>li*3
+						</aside>
+					</section>
+
+					<section class="inverted" data-background="./images/sysdig-06-magento-cache-fichiers.png" data-background-size="">
+	                    <p>Magento et son cache en fichiers</p>
+	                    <pre class=""><code data-trim>
+sysdig -pc "evt.type=open \
+    and fd.name contains /var/cache/"
+	                    </code></pre>
+	                    <aside class="notes">
+	                        ul>li*3
+	                    </aside>
+	                </section>
+
+					<section class="inverted" data-background="./images/sysdig-07-nginx-erreurs-404.png" data-background-size="">
+	                    <p>Les 404 sur notre site</p>
+	                    <pre class=""><code data-trim>
+sysdig "proc.name=nginx \
+    and evt.type=open \
+    and evt.failed=true"
+	                    </code></pre>
+	                    <aside class="notes">
+	                        ul>li*3
+	                    </aside>
+	                </section>
+
+					<section class="inverted" data-background="./images/sysdig-08-requetes-sql.png" data-background-size="">
+	                    <p>Toutes les requêtes <code>SELECT</code></p>
+	                    <pre class=""><code data-trim>
+sysdig "proc.name contains php-fpm \
+    and evt.buffer contains SELECT"
+	                    </code></pre>
+	                    <aside class="notes">
+	                        ul>li*3
+	                    </aside>
+	                </section>
+
+					<section>
+	                    <p>Liste des filtres</p>
+	                    <pre class=""><code data-trim>
+sysdig -l
+	                    </code></pre>
+						<p>Liste des événements</p>
+	                    <pre class=""><code data-trim>
+sysdig -L
+	                    </code></pre>
+	                    <aside class="notes">
+	                        ul>li*3
+	                    </aside>
+	                </section>
 
 
                     <!-- sysdig -->
