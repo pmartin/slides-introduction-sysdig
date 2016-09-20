@@ -86,7 +86,7 @@
     font-family: "SourceCodePro", monospace;
 }
 
-.reveal p>code, li>code {
+.reveal p>code, li>code, span>code {
     background-color: #F0F0F0;
 }
 
