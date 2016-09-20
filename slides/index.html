@@ -105,42 +105,42 @@
                         </aside>
                     </section>
 
-                    <section class="inverted" data-background="./images/outils-ps.png" data-background-size="">
+                    <section class="inverted" data-background="./images/outils-ps.png" data-background-size="contain">
                         <h2><code>ps</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
-                    <section class="inverted" data-background="./images/outils-htop.png" data-background-size="">
+                    <section class="inverted" data-background="./images/outils-htop.png" data-background-size="contain">
                         <h2><code>top</code> / <code>htop</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
-                    <section class="inverted" data-background="./images/outils-strace.png" data-background-size="">
+                    <section class="inverted" data-background="./images/outils-strace.png" data-background-size="contain">
                         <h2><code>strace</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
-                    <section class="inverted" data-background="./images/outils-nethogs.png" data-background-size="">
+                    <section class="inverted" data-background="./images/outils-nethogs.png" data-background-size="contain">
                         <h2><code>nethogs</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
-                    <section class="inverted" data-background="./images/outils-tcpdump.png" data-background-size="">
+                    <section class="inverted" data-background="./images/outils-tcpdump.png" data-background-size="contain">
                         <h2><code>tcpdump</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
-                    <section class="inverted" data-background="./images/outils-netstat.png" data-background-size="">
+                    <section class="inverted" data-background="./images/outils-netstat.png" data-background-size="contain">
                         <h2><code>netstat</code></h2>
                         <aside class="notes">
                             ul>li*3
@@ -300,7 +300,7 @@ sudo sysdig -n 100
 	                    </aside>
 	                </section>
 
-					<section class="inverted" data-background="./images/sysdig-01-raw.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-01-raw.png" data-background-size="contain">
 						<aside class="notes">
 							ul>li*3
 						</aside>
@@ -350,25 +350,25 @@ php -S localhost:8001
 	                    </aside>
 	                </section>
 
-					<section class="inverted" data-background="./images/sysdig-03-php-hello-world.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-03-php-hello-world.png" data-background-size="contain">
 						<aside class="notes">
 							ul>li*3
 						</aside>
 					</section>
 
-					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-00.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-00.png" data-background-size="contain">
 						<aside class="notes">
 							ul>li*3
 						</aside>
 					</section>
 
-					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-01.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-01.png" data-background-size="contain">
 						<aside class="notes">
 							ul>li*3
 						</aside>
 					</section>
 
-					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-02.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-02.png" data-background-size="contain">
 						<aside class="notes">
 							ul>li*3
 						</aside>
@@ -386,7 +386,7 @@ php -S localhost:8001
 	                    </aside>
 	                </section>
 
-					<section class="inverted" data-background="./images/sysdig-04-follow-root.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-04-follow-root.png" data-background-size="contain">
 						<p>Espionner <code>root</code></p>
 						<pre><code data-trim>
 sysdig "evt.type=chdir \
@@ -398,7 +398,7 @@ sysdig "evt.type=chdir \
 						</aside>
 					</section>
 
-					<section class="inverted" data-background="./images/sysdig-05-option-p.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-05-option-p.png" data-background-size="contain">
 						<p>Choisir les informations affichées : <code>-p</code></p>
 						<pre><code data-trim>
 sysdig
@@ -411,7 +411,7 @@ sysdig
 						</aside>
 					</section>
 
-					<section class="inverted" data-background="./images/sysdig-06-magento-cache-fichiers.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-06-magento-cache-fichiers.png" data-background-size="contain">
 	                    <p>Magento et son cache en fichiers</p>
 	                    <pre class=""><code data-trim>
 sysdig -pc "evt.type=open \
@@ -422,7 +422,7 @@ sysdig -pc "evt.type=open \
 	                    </aside>
 	                </section>
 
-					<section class="inverted" data-background="./images/sysdig-07-nginx-erreurs-404.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-07-nginx-erreurs-404.png" data-background-size="contain">
 	                    <p>Les 404 sur notre site</p>
 	                    <pre class=""><code data-trim>
 sysdig "proc.name=nginx \
@@ -434,7 +434,7 @@ sysdig "proc.name=nginx \
 	                    </aside>
 	                </section>
 
-					<section class="inverted" data-background="./images/sysdig-08-requetes-sql.png" data-background-size="">
+					<section class="inverted" data-background="./images/sysdig-08-requetes-sql.png" data-background-size="contain">
 	                    <p>Toutes les requêtes <code>SELECT</code></p>
 	                    <pre class=""><code data-trim>
 sysdig "proc.name contains php-fpm \
