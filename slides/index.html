@@ -242,15 +242,17 @@ sudo apt-get install -y sysdig
 
 					<section>
 						<p>Lister <strong>tout</strong> ce qu'il se passe</p>
-	                    <pre class="big"><code data-trim>
+	                    <pre class=""><code data-trim>
 sudo sysdig
 	                    </code></pre>
 						<p>Plus raisonnablement :</p>
-						<pre class="big"><code data-trim>
+						<pre class=""><code data-trim>
 sudo sysdig -n 100
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <ul>
+	                        	<li>Souvent, il faut lancer <code>sysdig</code> en <code>root</code> : ça va chercher pas mal de choses bien bas niveau</li>
+	                        </ul>
 	                    </aside>
 	                </section>
 
@@ -261,34 +263,54 @@ sudo sysdig -n 100
 					</section>
 
 					<section>
-	                    <h2>TODO exemple 2</h2>
-	                    <pre><code data-trim>
-
+	                    <p>Enregistrer vers un fichier</p>
+	                    <pre class=""><code data-trim>
+sudo sysdig -w mon-fichier.scap
+	                    </code></pre>
+						<p>Analyser depuis un fichier</p>
+	                    <pre class=""><code data-trim>
+sysdig -r mon-fichier.scap
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <ul>
+	                        	<li>On peut spécifier une taille max par fichier, faire du rotate de fichiers, compresser les fichiers, ...</li>
+	                        	<li>Typiquement, on enregistre une fois <em>en live</em> sur un serveur, puis on analyse autant de fois que nécessaire en local.</li>
+								<li>Le fichier grossit <strong>vite</strong> !</li>
+	                        </ul>
 	                    </aside>
 	                </section>
 
 					<section>
-	                    <h2>TODO exemple 3</h2>
-	                    <pre><code data-trim>
-
+	                    <p>Visibilité dans les containers</p>
+	                    <pre class=""><code data-trim>
+sudo sysdig -pc -n 100
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <ul>
+	                        	<li>Fort pratique quand vous codez sous docker ;-)</li>
+	                        </ul>
 	                    </aside>
 	                </section>
 
 					<section>
-	                    <h2>TODO exemple 4</h2>
+	                    <p>Filtrons !</p>
 	                    <pre><code data-trim>
-
+sysdig proc.name=php
+	                    </code></pre>
+						<p>Et en parallèle :</p>
+						<pre><code data-trim>
+php -S localhost:8001
 	                    </code></pre>
 	                    <aside class="notes">
 	                        ul>li*3
 	                    </aside>
 	                </section>
+
+					<section class="inverted" data-background="./images/sysdig-02-phpinfo.png" data-background-size="">
+						<aside class="notes">
+							ul>li*3
+						</aside>
+					</section>
 
 					<section>
 	                    <h2>TODO exemple 5</h2>
@@ -423,7 +445,7 @@ sudo sysdig -n 100
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					//{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
