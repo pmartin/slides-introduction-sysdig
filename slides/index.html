@@ -325,14 +325,27 @@ php -S localhost:8001
 					</section>
 
 					<section>
-	                    <h2>TODO exemple 5</h2>
-	                    <pre><code data-trim>
-
-	                    </code></pre>
+	                    <p>Filtrer</p>
+						<ul>
+							<li>Opérateurs : <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>contains</code></li>
+							<li>Combinaison : <code>or</code>, <code>and</code>, <code>not</code></li>
+							<li>On peut utiliser des parenthèses</li>
+						</ul>
 	                    <aside class="notes">
 	                        ul>li*3
 	                    </aside>
 	                </section>
+
+					<section class="" data-background="./images/sysdig-04-follow-root.png" data-background-size="">
+						<pre><code data-trim>
+sysdig "evt.type=chdir \
+	and user.name=root \
+	and proc.name!=acpi"
+	                    </code></pre>
+						<aside class="notes">
+							ul>li*3
+						</aside>
+					</section>
 
 
                     <!-- sysdig -->
