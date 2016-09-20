@@ -251,8 +251,10 @@
                     <section>
                         <h2>Installation (debian)</h2>
                         <pre><code data-trim>
-curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | sudo apt-key add -
-sudo curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
+curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public \
+    | sudo apt-key add -
+sudo curl -s -o /etc/apt/sources.list.d/draios.list \
+    http://download.draios.com/stable/deb/draios.list
 sudo apt-get update
 
 sudo apt-get install -y linux-headers-$(uname -r)
@@ -269,6 +271,15 @@ sudo apt-get install -y sysdig
                             Limité à la lecture de trace générées sous Linux.
                         </p>
                         <aside class="notes">
+                            ul>li*3
+                        </aside>
+                    </section>
+
+					<section class="inverted" data-background="./images/troll.jpg" data-background-size="">
+                        <aside class="notes">
+							<p class="img-attribution">
+			                    <a href="https://www.flickr.com/photos/chefranden/2571710426/">Photo</a> par <a href="https://www.flickr.com/photos/chefranden/">Randen Pederson</a> sur Flickr, CC-BY.
+			                </p>
                             ul>li*3
                         </aside>
                     </section>
