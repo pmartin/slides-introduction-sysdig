@@ -469,10 +469,14 @@ sysdig -L
                         <h1>Les chisels</h1>
                     </section>
 
-					<section>
-						<h2>TODO exemple 1</h2>
+                    <section>
+						<h2>Chisels ?</h2>
+						<p>
+						    Scripts qui analysent le flux d'événements pour réaliser des actions <em>utiles</em>.
+						</p>
 						<pre><code data-trim>
-
+sysdig -c NOM_DU_CHISEL
+sysdig -cl
 						</code></pre>
 						<aside class="notes">
 							ul>li*3
@@ -480,9 +484,19 @@ sysdig -L
 					</section>
 
 					<section>
-	                    <h2>TODO exemple 2</h2>
-	                    <pre><code data-trim>
+                        <p>Fichiers avec le plus d'I/O</p>
+						<pre><code data-trim>
+sysdig -pc -c topfiles_bytes
+						</code></pre>
+						<aside class="notes">
+							ul>li*3
+						</aside>
+					</section>
 
+					<section>
+                        <p>Accès fichiers lents (&gt;3sec)</p>
+	                    <pre><code data-trim>
+sysdig -pc -c fileslower 3
 	                    </code></pre>
 	                    <aside class="notes">
 	                        ul>li*3
