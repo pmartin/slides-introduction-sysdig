@@ -536,10 +536,15 @@ sysdig -pc -cspy_logs \
                         <h1>csysdig</h1>
                     </section>
 
-					<section>
-						<h2>TODO exemple 1</h2>
-						<pre><code data-trim>
+                    <section>
+                        <h2>csysdig</h2>
+                        <p>Interface <em>graphique</em> qui permet de visualiser ce qu'il se passe <em>en live</em>.</p>
+                    </section>
 
+					<section>
+                        <p>Tous les processus exécutés dans des containers</p>
+						<pre><code data-trim>
+csysdig -pc "container.name!=host"
 						</code></pre>
 						<aside class="notes">
 							ul>li*3
@@ -547,10 +552,11 @@ sysdig -pc -cspy_logs \
 					</section>
 
 					<section>
-	                    <h2>TODO exemple 2</h2>
+                        <p>Analyser une requête</p>
 	                    <pre><code data-trim>
-
+csysdig -pc "proc.name=php"
 	                    </code></pre>
+                        <p class="fragment">Astuce&nbsp;: <kbd>F5</kbd> et <kbd>F6</kbd>.</p>
 	                    <aside class="notes">
 	                        ul>li*3
 	                    </aside>
@@ -572,6 +578,7 @@ sysdig -pc -cspy_logs \
                             <li>Une seule série d'options</li>
                             <li>Vision globale / en profondeur</li>
                             <li>Fonction en-ligne / hors-ligne</li>
+                            <li class="fragment"><code>root</code> souvent requis</li>
                         </ul>
                         <aside class="notes">
 							<p class="img-attribution">
