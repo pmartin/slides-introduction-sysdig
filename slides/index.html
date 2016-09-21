@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Sysdig : une introduction</title>
+		<title>Sysdig&nbsp;: une introduction</title>
 
 		<meta name="description" content="Slides utilisés pendant ma présentation « Une introduction à sysdig » à l'AFUP Lyon, septembre 2016">
 		<meta name="author" content="Pascal MARTIN">
@@ -74,7 +74,7 @@
 
                 <section>
                     <section class="inverted" data-background="./images/servers-01.jpg" data-background-size="">
-                        <h1>Que fait mon système ?</h1>
+                        <h1>Que fait mon système&nbsp;?</h1>
 						<aside class="notes">
 							<p class="img-attribution">
 			                    <a href="https://www.flickr.com/photos/kewl/8475764430/">Photo</a> par <a href="https://www.flickr.com/photos/kewl/">Tristan Schmurr</a> sur Flickr, CC-BY.
@@ -90,12 +90,12 @@
                     </section>
 
                     <section class="inverted" data-background="./images/point-interrogation.jpg" data-background-size="">
-                        <h2>Que se passe-t-il ?</h2>
+                        <h2>Que se passe-t-il&nbsp;?</h2>
                         <ul>
-                            <li>Sur ma machine ?</li>
-                            <li>Sur mon serveur ?</li>
-                            <li>Dans ma VM ?</li>
-                            <li>Dans mon container ?</li>
+                            <li>Sur ma machine&nbsp;?</li>
+                            <li>Sur mon serveur&nbsp;?</li>
+                            <li>Dans ma VM&nbsp;?</li>
+                            <li>Dans mon container&nbsp;?</li>
                         </ul>
                         <aside class="notes">
 							<p class="img-attribution">
@@ -207,8 +207,8 @@
 			                    <a href="https://www.flickr.com/photos/keepitsurreal/11698524166/">Photo</a> par <a href="https://www.flickr.com/photos/keepitsurreal/">Kyle Pearce</a> sur Flickr, CC-BY-SA.
 			                </p>
                             <ul>
-                                <li>Quelles sont vos options favorites pour <code>ps</code> ?</li>
-                                <li>Chacun a les siennes : <code>elf</code>, <code>aux</code>, <code>Alf</code>, ...</li>
+                                <li>Quelles sont vos options favorites pour <code>ps</code>&nbsp;?</li>
+                                <li>Chacun a les siennes&nbsp;: <code>elf</code>, <code>aux</code>, <code>Alf</code>, ...</li>
                                 <li></li>
                             </ul>
                         </aside>
@@ -262,7 +262,7 @@ sudo apt-get install -y sysdig
                     </section>
 
                     <section>
-                        <h2>Windows ? Mac ?</h2>
+                        <h2>Windows&nbsp;? Mac&nbsp;?</h2>
                         <p>
                             Limité à la lecture de trace générées sous Linux.
                         </p>
@@ -285,13 +285,13 @@ sudo apt-get install -y sysdig
 	                    <pre class=""><code data-trim>
 sudo sysdig
 	                    </code></pre>
-						<p>Plus raisonnablement :</p>
+						<p>Plus raisonnablement&nbsp;:</p>
 						<pre class=""><code data-trim>
 sudo sysdig -n 100
 	                    </code></pre>
 	                    <aside class="notes">
 	                        <ul>
-	                        	<li>Souvent, il faut lancer <code>sysdig</code> en <code>root</code> : ça va chercher pas mal de choses bien bas niveau</li>
+	                        	<li>Souvent, il faut lancer <code>sysdig</code> en <code>root</code>&nbsp;: ça va chercher pas mal de choses bien bas niveau</li>
 	                        </ul>
 	                    </aside>
 	                </section>
@@ -315,7 +315,7 @@ sysdig -r mon-fichier.scap
 	                        <ul>
 	                        	<li>On peut spécifier une taille max par fichier, faire du rotate de fichiers, compresser les fichiers, ...</li>
 	                        	<li>Typiquement, on enregistre une fois <em>en live</em> sur un serveur, puis on analyse autant de fois que nécessaire en local.</li>
-								<li>Le fichier grossit <strong>vite</strong> !</li>
+								<li>Le fichier grossit <strong>vite</strong>&nbsp;!</li>
 	                        </ul>
 	                    </aside>
 	                </section>
@@ -327,17 +327,17 @@ sudo sysdig -pc -n 100
 	                    </code></pre>
 	                    <aside class="notes">
 	                        <ul>
-	                        	<li>Fort pratique quand vous codez sous docker ;-)</li>
+	                        	<li>Fort pratique quand vous codez sous docker&nbsp;;-)</li>
 	                        </ul>
 	                    </aside>
 	                </section>
 
 					<section>
-	                    <p>Filtrons !</p>
+	                    <p>Filtrons&nbsp;!</p>
 	                    <pre><code data-trim>
 sysdig proc.name=php
 	                    </code></pre>
-						<p>Et en parallèle :</p>
+						<p>Et en parallèle&nbsp;:</p>
 						<pre><code data-trim>
 php -S localhost:8001
 	                    </code></pre>
@@ -373,8 +373,8 @@ php -S localhost:8001
 					<section>
 	                    <p>Filtrer</p>
 						<ul>
-							<li>Opérateurs : <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>contains</code></li>
-							<li>Combinaison : <code>or</code>, <code>and</code>, <code>not</code></li>
+							<li>Opérateurs&nbsp;: <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>contains</code></li>
+							<li>Combinaison&nbsp;: <code>or</code>, <code>and</code>, <code>not</code></li>
 							<li>On peut utiliser des parenthèses</li>
 						</ul>
 	                    <aside class="notes">
@@ -395,7 +395,7 @@ sysdig "evt.type=chdir \
 					</section>
 
 					<section class="inverted" data-background="./images/sysdig-05-option-p.png" data-background-size="contain">
-						<p class="visible-on-inverted">Choisir les informations affichées : <code>-p</code></p>
+						<p class="visible-on-inverted">Choisir les informations affichées&nbsp;: <code>-p</code></p>
 						<pre><code data-trim>
 sysdig
     -p "%12user.name %6proc.pid %12proc.name \
@@ -466,7 +466,7 @@ sysdig -L
                     </section>
 
                     <section>
-						<h2>Chisels ?</h2>
+						<h2>Chisels&nbsp;?</h2>
 						<p>
 						    Scripts qui analysent le flux d'événements pour réaliser des actions <em>utiles</em>.
 						</p>
