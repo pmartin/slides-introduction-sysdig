@@ -486,7 +486,7 @@ sysdig -i NOM_DU_CHISEL
 						</aside>
 					</section>
 
-					<section>
+					<section class="inverted" data-background="./images/chisels-01-topfiles-bytes.png" data-background-size="contain">
                         <p>Fichiers avec le plus d'I/O</p>
 						<pre><code data-trim>
 sysdig -pc -c topfiles_bytes
@@ -501,7 +501,7 @@ sysdig -pc -c topfiles_bytes \
 						</aside>
 					</section>
 
-					<section>
+					<section class="inverted" data-background="./images/chisels-02-fileslower.png" data-background-size="contain">
                         <p>Accès fichiers lents (&gt;3sec)</p>
 	                    <pre><code data-trim>
 sysdig -pc -c fileslower 3
@@ -541,7 +541,7 @@ sysdig -pc -cspy_logs \
                         <p>Interface <em>graphique</em> qui permet de visualiser ce qu'il se passe <em>en live</em>.</p>
                     </section>
 
-					<section>
+					<section class="inverted" data-background="./images/csysdig-01-process-containers.png" data-background-size="contain">
                         <p>Tous les processus exécutés dans des containers</p>
 						<pre><code data-trim>
 csysdig -pc "container.name!=host"
@@ -551,7 +551,7 @@ csysdig -pc "container.name!=host"
 						</aside>
 					</section>
 
-					<section>
+					<section class="inverted" data-background="./images/csysdig-02-analyse-process.png" data-background-size="contain">
                         <p>Analyser une requête</p>
 	                    <pre><code data-trim>
 csysdig -pc "proc.name=php"
