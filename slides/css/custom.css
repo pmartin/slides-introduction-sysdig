@@ -145,6 +145,14 @@
     text-shadow: 0px 0px 16px black;
 }
 
+.reveal .inverted h2.visible-on-inverted {
+    color: black;
+    background-color: #ddd;
+    box-shadow: 0px 0px 8px black;
+    text-shadow: none;
+    padding: 0.5em;
+}
+
 .reveal .inverted h2, .reveal .inverted h3, .reveal .inverted h4, .reveal .inverted h5, .reveal .inverted h6 {
     text-shadow: 0px 0px 12px black;
 }
@@ -152,6 +160,14 @@
 .reveal .inverted {
     color: white;
     text-shadow: 0px 0px 8px black;
+}
+
+.reveal .inverted .visible-on-inverted {
+    color: black;
+    background-color: #ddd;
+    box-shadow: 0px 0px 8px black;
+    text-shadow: none;
+    padding: 0.5em;
 }
 
 .reveal .inverted pre {

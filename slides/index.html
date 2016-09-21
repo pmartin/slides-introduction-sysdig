@@ -106,42 +106,42 @@
                     </section>
 
                     <section class="inverted" data-background="./images/outils-ps.png" data-background-size="contain">
-                        <h2><code>ps</code></h2>
+                        <h2 class="visible-on-inverted"><code>ps</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
                     <section class="inverted" data-background="./images/outils-htop.png" data-background-size="contain">
-                        <h2><code>top</code> / <code>htop</code></h2>
+                        <h2 class="visible-on-inverted"><code>htop</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
                     <section class="inverted" data-background="./images/outils-strace.png" data-background-size="contain">
-                        <h2><code>strace</code></h2>
+                        <h2 class="visible-on-inverted"><code>strace</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
                     <section class="inverted" data-background="./images/outils-nethogs.png" data-background-size="contain">
-                        <h2><code>nethogs</code></h2>
+                        <h2 class="visible-on-inverted"><code>nethogs</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
                     <section class="inverted" data-background="./images/outils-tcpdump.png" data-background-size="contain">
-                        <h2><code>tcpdump</code></h2>
+                        <h2 class="visible-on-inverted"><code>tcpdump</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
                     </section>
 
                     <section class="inverted" data-background="./images/outils-netstat.png" data-background-size="contain">
-                        <h2><code>netstat</code></h2>
+                        <h2 class="visible-on-inverted"><code>netstat</code></h2>
                         <aside class="notes">
                             ul>li*3
                         </aside>
@@ -195,7 +195,7 @@
                         </aside>
                     </section>
 
-                    <section class="inverted" data-background="./images/messy-bookstore.jpg" data-background-size="">
+                    <section>
                         <h2>Bref...</h2>
                         <ul>
                             <li><strong>Plein</strong> d'outils</li>
@@ -219,14 +219,10 @@
 
 
                 <section>
-                    <section>
-						<p class="stretched">
+                    <section class="inverted" data-background="./images/swiss-army-knife.jpg" data-background-size="">
+						<p class="stretched" style="background-color: white;">
 							<img style="min-width: 80%;" src="./images/sysdig.svg" alt="logo sysdig" />
 						</p>
-                    </section>
-
-                    <section class="inverted" data-background="./images/swiss-army-knife.jpg" data-background-size="">
-                        <h2>Quid ?</h2>
                         <aside class="notes">
 							<p class="img-attribution">
 			                    <a href="https://www.flickr.com/photos/octavaria/260463135/">Photo</a> par <a href="https://www.flickr.com/photos/octavaria/">Tim Douglas</a> sur Flickr, CC-BY-SA.
@@ -387,7 +383,7 @@ php -S localhost:8001
 	                </section>
 
 					<section class="inverted" data-background="./images/sysdig-04-follow-root.png" data-background-size="contain">
-						<p>Espionner <code>root</code></p>
+						<p class="visible-on-inverted">Espionner <code>root</code></p>
 						<pre><code data-trim>
 sysdig "evt.type=chdir \
     and user.name=root \
@@ -399,7 +395,7 @@ sysdig "evt.type=chdir \
 					</section>
 
 					<section class="inverted" data-background="./images/sysdig-05-option-p.png" data-background-size="contain">
-						<p>Choisir les informations affichées : <code>-p</code></p>
+						<p class="visible-on-inverted">Choisir les informations affichées : <code>-p</code></p>
 						<pre><code data-trim>
 sysdig
     -p "%12user.name %6proc.pid %12proc.name \
@@ -412,7 +408,7 @@ sysdig
 					</section>
 
 					<section class="inverted" data-background="./images/sysdig-06-magento-cache-fichiers.png" data-background-size="contain">
-	                    <p>Magento et son cache en fichiers</p>
+	                    <p class="visible-on-inverted">Magento et son cache en fichiers</p>
 	                    <pre class=""><code data-trim>
 sysdig -pc "evt.type=open \
     and fd.name contains /var/cache/"
@@ -423,7 +419,7 @@ sysdig -pc "evt.type=open \
 	                </section>
 
 					<section class="inverted" data-background="./images/sysdig-07-nginx-erreurs-404.png" data-background-size="contain">
-	                    <p>Les 404 sur notre site</p>
+	                    <p class="visible-on-inverted">Les 404 sur notre site</p>
 	                    <pre class=""><code data-trim>
 sysdig "proc.name=nginx \
     and evt.type=open \
@@ -435,7 +431,7 @@ sysdig "proc.name=nginx \
 	                </section>
 
 					<section class="inverted" data-background="./images/sysdig-08-requetes-sql.png" data-background-size="contain">
-	                    <p>Toutes les requêtes <code>SELECT</code></p>
+	                    <p class="visible-on-inverted">Toutes les requêtes <code>SELECT</code></p>
 	                    <pre class=""><code data-trim>
 sysdig "proc.name contains php-fpm \
     and evt.buffer contains SELECT"
@@ -487,7 +483,7 @@ sysdig -i NOM_DU_CHISEL
 					</section>
 
 					<section class="inverted" data-background="./images/chisels-01-topfiles-bytes.png" data-background-size="contain">
-                        <p>Fichiers avec le plus d'I/O</p>
+                        <p class="visible-on-inverted">Fichiers avec le plus d'I/O</p>
 						<pre><code data-trim>
 sysdig -pc -c topfiles_bytes
 						</code></pre>
@@ -502,7 +498,7 @@ sysdig -pc -c topfiles_bytes \
 					</section>
 
 					<section class="inverted" data-background="./images/chisels-02-fileslower.png" data-background-size="contain">
-                        <p>Accès fichiers lents (&gt;3sec)</p>
+                        <p class="visible-on-inverted">Accès fichiers lents (&gt;3sec)</p>
 	                    <pre><code data-trim>
 sysdig -pc -c fileslower 3
 	                    </code></pre>
@@ -542,7 +538,7 @@ sysdig -pc -cspy_logs \
                     </section>
 
 					<section class="inverted" data-background="./images/csysdig-01-process-containers.png" data-background-size="contain">
-                        <p>Tous les processus exécutés dans des containers</p>
+                        <p class="visible-on-inverted">Tous les processus exécutés dans des containers</p>
 						<pre><code data-trim>
 csysdig -pc "container.name!=host"
 						</code></pre>
@@ -552,11 +548,11 @@ csysdig -pc "container.name!=host"
 					</section>
 
 					<section class="inverted" data-background="./images/csysdig-02-analyse-process.png" data-background-size="contain">
-                        <p>Analyser une requête</p>
+                        <p class="visible-on-inverted">Analyser une requête</p>
 	                    <pre><code data-trim>
 csysdig -pc "proc.name=php"
 	                    </code></pre>
-                        <p class="fragment">Astuce&nbsp;: <kbd>F5</kbd> et <kbd>F6</kbd>.</p>
+                        <p class="visible-on-inverted fragment">Astuce&nbsp;: <kbd>F5</kbd> et <kbd>F6</kbd>.</p>
 	                    <aside class="notes">
 	                        ul>li*3
 	                    </aside>
