@@ -234,7 +234,7 @@
 							<p class="img-attribution">
 			                    <a href="https://www.flickr.com/photos/octavaria/260463135/">Photo</a> par <a href="https://www.flickr.com/photos/octavaria/">Tim Douglas</a> sur Flickr, CC-BY-SA.
 			                </p>
-                            ul>li*3
+                            <p>Et si au lieu de 36 outils, on se concentrait sur un seul, qui soit un vrai couteau suisse ?</p>
                         </aside>
                     </section>
 
@@ -247,7 +247,7 @@
                             <li>Instructions pour installation <em>manuelle</em></li>
                         </ul>
                         <aside class="notes">
-                            ul>li*3
+                            <p>L'installation, c'est facile ;-)</p>
                         </aside>
                     </section>
 
@@ -264,7 +264,7 @@ sudo apt-get install -y linux-headers-$(uname -r)
 sudo apt-get install -y sysdig
                         </code></pre>
                         <aside class="notes">
-                            ul>li*3
+                            <p>Voila en gros ce que j'ai lancé sur ma machine ; quelques étapes des plus classiques.</p>
                         </aside>
                     </section>
 
@@ -274,7 +274,7 @@ sudo apt-get install -y sysdig
                             Limité à la lecture de trace générées sous Linux.
                         </p>
                         <aside class="notes">
-                            ul>li*3
+                            <p>Bon, c'est un outil orienté <em>Linux</em>.</p>
                         </aside>
                     </section>
 
@@ -283,7 +283,7 @@ sudo apt-get install -y sysdig
 							<p class="img-attribution">
 			                    <a href="https://www.flickr.com/photos/chefranden/2571710426/">Photo</a> par <a href="https://www.flickr.com/photos/chefranden/">Randen Pederson</a> sur Flickr, CC-BY.
 			                </p>
-                            ul>li*3
+                            <p>Et si je voulais troller sur l'environnement de développement, ça serait le moment, mais j'essaye d'arrêter ^^</p>
                         </aside>
                     </section>
 
@@ -298,14 +298,16 @@ sudo sysdig -n 100
 	                    </code></pre>
 	                    <aside class="notes">
 	                        <ul>
-	                        	<li>Souvent, il faut lancer <code>sysdig</code> en <code>root</code>&nbsp;: ça va chercher pas mal de choses bien bas niveau</li>
+	                        	<li>Souvent, il faut lancer <code>sysdig</code> en <code>root</code>&nbsp;: ça va chercher pas mal de choses bien bas niveau.</li>
+								<li>Après tout, ça analyse les appels kernel.</li>
+								<p>Pensez au <code>-n X</code> pour limiter la sortie à quelques lignes, surtout pour découvrir !</p>
 	                        </ul>
 	                    </aside>
 	                </section>
 
 					<section class="inverted" data-background="./images/sysdig-01-raw.png" data-background-size="contain">
 						<aside class="notes">
-							ul>li*3
+							<p>Voila un exemple de sortie; c'est verbeux et ça défile <strong>vite</strong></p>
 						</aside>
 					</section>
 
@@ -349,31 +351,34 @@ sysdig proc.name=php
 php -S localhost:8001
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <ul>
+	                        	<li>D'un côté, je lance <code>sysdig</code> pour tracer tout ce que font les processus nommés <code>"php"</code></li>
+	                        	<li>Et d'un autre côté, je lance un serveur web de test, sur lequel je vais appeler une page</li>
+	                        </ul>
 	                    </aside>
 	                </section>
 
 					<section class="inverted" data-background="./images/sysdig-03-php-hello-world.png" data-background-size="contain">
 						<aside class="notes">
-							ul>li*3
+							<p>Voici un extrait de la sortie obtenue. On y voit tout un paquet d'informations.</p>
 						</aside>
 					</section>
 
 					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-00.png" data-background-size="contain">
 						<aside class="notes">
-							ul>li*3
+							<p>Déjà, tout ce qui est affiché correspond à un processus <code>php</code>, celui qu'on veut analyser, sans bruit venant de tout le reste du système.</p>
 						</aside>
 					</section>
 
 					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-01.png" data-background-size="contain">
 						<aside class="notes">
-							ul>li*3
+							<p>Ensuite, on voit le chemin du fichier auquel on essaye d'accéder (oui, sur ce coup, ce n'est pas une vraie appli que j'ai en prod)</p>
 						</aside>
 					</section>
 
 					<section class="inverted" data-background="./images/sysdig-03-php-hello-world-highlight-02.png" data-background-size="contain">
 						<aside class="notes">
-							ul>li*3
+							<p>Et si on cherche un peu plus loin, on voit même la sortie qui a été retournée au client !</p>
 						</aside>
 					</section>
 
@@ -385,7 +390,8 @@ php -S localhost:8001
 							<li>On peut utiliser des parenthèses</li>
 						</ul>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>On peut positionner des filtres plus complexes, avec des conditions, des combinaisons, ...</p>
+							<p>Comme pour les regex, ça peut être <em>fun</em> à écrire ; et ça peut rapidement devenir galère à maintenir !</p>
 	                    </aside>
 	                </section>
 
@@ -397,7 +403,11 @@ sysdig "evt.type=chdir \
     and proc.name!=acpi"
 	                    </code></pre>
 						<aside class="notes">
-							ul>li*3
+							<ul>
+								<li>Un premier exemple : suivons tous les événements de changement de répertoire (<code>chdir</code>),</li>
+								<li>effectués par l'utilisateur <code>root</code> (en excluant l'<code>acpi</code> : mon prompt qui veut afficher le niveau de batterie de mon PC).</li>
+								<li>En parallèle, <code>root</code> navigue. Puissant ;-) On voit vite qu'on peut espionner tout le système, d'où <code>sysdig</code> qui requiert les droits d'admin pour se lancer.</li>
+							</ul>
 						</aside>
 					</section>
 
@@ -410,7 +420,7 @@ sysdig
     "evt.type=open and fd.name contains .xml"
 	                    </code></pre>
 						<aside class="notes">
-							ul>li*3
+							<p>Si la sortie ne vous convient pas, on peut la formater autrement avec <code>-p</code>. Allez voir la doc.</p>
 						</aside>
 					</section>
 
@@ -421,7 +431,7 @@ sysdig -pc "evt.type=open \
     and fd.name contains /var/cache/"
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>Autre exemple, cas réel celui-ci : on suit toutes les ouvertures de fichier (<code>open</code>) dont le chemin contient <code>/var/cache/</code> : là où Magento stocke son cache (note : en prod, on ne stocke pas en fichiers ; mais en dev, si). C'est assez monstrueux !</p>
 	                    </aside>
 	                </section>
 
@@ -433,7 +443,7 @@ sysdig "proc.name=nginx \
     and evt.failed=true"
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>Pour suivre les erreurs 404, des fichiers inexistant, on pourrait suivre tout ce qui vient du processus <code>nginx</code>, qui est une ouverture de fichier, et qui a échoué.</p>
 	                    </aside>
 	                </section>
 
@@ -444,7 +454,7 @@ sysdig "proc.name contains php-fpm \
     and evt.buffer contains SELECT"
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>Ou on peut suivre toutes les requêtes SQL de sélection effectuées depuis PHP.</p>
 	                    </aside>
 	                </section>
 
@@ -458,7 +468,7 @@ sysdig -l
 sysdig -L
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>Là encore, vous avez un nombre fantastique de possibilités, consultez la doc ;-)</p>
 	                    </aside>
 	                </section>
 
