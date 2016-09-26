@@ -560,7 +560,7 @@ sysdig -pc -cspy_logs \
 csysdig -pc "container.name!=host"
 						</code></pre>
 						<aside class="notes">
-							ul>li*3
+							<p>Vous vous souvenez de <code>htop</code>, dont j'ai montré un screenshot au début ? Et bien, voici un peu la même chose, en ne prenant en compte que les processus tournant dans des containers (pas ceux de ma machine physique).</p>
 						</aside>
 					</section>
 
@@ -571,7 +571,7 @@ csysdig -pc "proc.name=php"
 	                    </code></pre>
                         <p class="visible-on-inverted fragment">Astuce&nbsp;: <kbd>F5</kbd> et <kbd>F6</kbd>.</p>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>Et en suivant les processus, on peut obtenir plus d'informations, comme le détail des appels système effectués ou leur sortie.</p>
 	                    </aside>
 	                </section>
 
