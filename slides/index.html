@@ -495,7 +495,7 @@ sysdig -cl
 sysdig -i NOM_DU_CHISEL
 						</code></pre>
 						<aside class="notes">
-							ul>li*3
+							<p>On n'a pas toujours besoin d'écrire les filtres à la main : tout un ensemble de <em>ciseaux</em> permettent d'effectuer certaines analyses, en particulier avec des agrégations.</p>
 						</aside>
 					</section>
 
@@ -510,7 +510,7 @@ sysdig -pc -c topfiles_bytes \
     and fd.directory contains cache"
 						</code></pre>
 						<aside class="notes">
-							ul>li*3
+							<p>En suivant les fichiers qui ont le plus grand volume d'I/O et en faisant F5 sur mon Magento et en filtrant sur le container correspondant (pour n'avoir que ses fichiers), on retrouve... le cache ;-)</p>
 						</aside>
 					</section>
 
@@ -520,7 +520,7 @@ sysdig -pc -c topfiles_bytes \
 sysdig -pc -c fileslower 3
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>Ou alors, on peut afficher en temps réel la liste des fichiers pour lesquels l'accès est <em>lent</em>.</p>
 	                    </aside>
 	                </section>
 
@@ -536,7 +536,7 @@ sysdig -pc -cspy_logs \
     and evt.args contains path=/select"
 	                    </code></pre>
 	                    <aside class="notes">
-	                        ul>li*3
+	                        <p>Ou même, on peut suivre <em>les logs</em> (sysdig se débrouille pour identifier "les logs"). Comme les accès nginx recoupés à la DB. Ou toutes les requêtes de sélection sur mon index SolR (ça a permis de voir qu'il y en avait un peu trop ^^)</p>
 	                    </aside>
 	                </section>
 
